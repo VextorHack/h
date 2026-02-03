@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Valentine Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: pink;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      overflow: hidden;
+      height: 100vh;
+    }
+    h1 {
+      color: red;
+      margin-top: 100px;
+      font-size: 48px;
+    }
+    p {
+      font-size: 24px;
+      color: #333;
+    }
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 6s linear forwards;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+    .heart::after {
+      left: 15px;
+      top: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-600px) rotate(45deg); opacity: 0; }
+    }
+    .controls {
+      margin-top: 40px;
+    }
+    button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 5px;
+    }
+    button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 Happy Valentine’s Day 💖</h1>
+  <p>You said YES! That makes my heart so happy 💕</p>
+
+  <!-- Background music -->
+  <audio id="bgMusic" loop>
+    <source src="romantic-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Music controls -->
+  <div class="controls">
+    <button onclick="playMusic()">Play Music 🎶</button>
+    <button onclick="pauseMusic()">Pause Music ⏸️</button>
+  </div>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+
+    function playMusic() {
+      music.play();
+    }
+
+    function pauseMusic() {
+      music.pause();
+    }
+
+    // Function to create floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      document.body.appendChild(heart);
+
+      // Random horizontal position
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px";
+
+      // Random animation duration
+      const duration = 4 + Math.random() * 3;
+      heart.style.animationDuration = duration + "s";
+
+      // Remove heart after animation
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000);
+    }
+
+    // Generate hearts continuously
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>

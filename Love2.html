@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine Question</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: pink;
+      text-align: center;
+      padding-top: 100px;
+      height: 100vh;
+      overflow: hidden;
+    }
+    h1 { color: red; }
+    .btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 10px;
+      position: absolute;
+    }
+    .btn:hover { background-color: darkred; }
+    #yesBtn { position: static; }
+  </style>
+</head>
+<body>
+  <h1>💖 Will you be my Valentine? 💖</h1>
+  <button id="yesBtn" class="btn" onclick="answer('yes')">Yes</button>
+  <button id="noBtn" class="btn" onclick="moveNo()">No</button>
+
+  <script>
+    function answer(choice) {
+      if (choice === "yes") {
+        // Redirect to the surprise page
+        window.location.href = "valentine.html";
+      }
+    }
+
+    function moveNo() {
+      const noBtn = document.getElementById("noBtn");
+      const bodyWidth = window.innerWidth - 100;
+      const bodyHeight = window.innerHeight - 100;
+
+      const randomX = Math.floor(Math.random() * bodyWidth);
+      const randomY = Math.floor(Math.random() * bodyHeight);
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+    }
+  </script>
+</body>
+</html>
